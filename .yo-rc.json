@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Tomasz Plawecki",
+      "authorEmail": "tomasz.plawecki@gmail.com",
+      "authorUrl": ""
+    }
+  }
+}
