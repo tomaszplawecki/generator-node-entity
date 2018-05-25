@@ -5,5 +5,11 @@
       "authorEmail": "tomasz.plawecki@gmail.com",
       "authorUrl": ""
     }
+  },
+  "generator-node-entity": {
+    "promptValues": {
+      "createModel": false,
+      "createController": true
+    }
   }
 }

@@ -12,32 +12,48 @@ module.exports = class extends Generator {
             {
                 type: 'input',
                 name: 'name',
-                message: 'Enter a name for the new component (i.e.: myNewComponent): '
-            }
+                message: 'Enter a name for the new entity (i.e.: MyNewEntity): '
+            },
+            {
+                type: 'confirm',
+                name: 'createModel',
+                message: 'Do you want to create model? ',
+                store   : true
+            },
+            {
+                type: 'confirm',
+                name: 'createController',
+                message: 'Do you want to create controller? ',
+                store   : true
+            },
         ]).then((answers) => {
             // create destination folder
             const name = answers.name;
             const nameCamelCase = me.lowercaseFirstLetter(name);
             const nameUnderscore = me.camelCaseToUnderscore(nameCamelCase);
             const nameHyphen = me.underscoreToHyphen(nameUnderscore);
-            this.fs.copyTpl(
-                this.templatePath('_model.js'),
-                this.destinationPath('models/' + nameHyphen + '.js'),
-                {
-                    name: name,
-                    nameCamelCase: nameCamelCase,
-                    nameUnderscore: nameUnderscore
-                }
-            );
-            this.fs.copyTpl(
-                this.templatePath('_controller.js'),
-                this.destinationPath('api/' + nameHyphen + 's.js'),
-                {
-                    name: name,
-                    nameCamelCase: nameCamelCase,
-                    nameUnderscore: nameUnderscore
-                }
-            );
+            if (answers.createModel) {
+                this.fs.copyTpl(
+                    this.templatePath('_model.js'),
+                    this.destinationPath('models/' + nameHyphen + '.js'),
+                    {
+                        name: name,
+                        nameCamelCase: nameCamelCase,
+                        nameUnderscore: nameUnderscore
+                    }
+                );
+            }
+            if (answers.createController) {
+                this.fs.copyTpl(
+                    this.templatePath('_controller.js'),
+                    this.destinationPath('api/' + nameHyphen + 's.js'),
+                    {
+                        name: name,
+                        nameCamelCase: nameCamelCase,
+                        nameUnderscore: nameUnderscore
+                    }
+                );
+            }
         });
     }
 
