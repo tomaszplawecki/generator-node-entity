@@ -7,7 +7,7 @@ const <%= name %>s = () => {
     var createApi = () => {
         let api = Router();
 
-        api.post('/', <%= nameCamelCase %>sValidation, (req, res) => {
+        api.post('/', <%= nameCamelCase %>Validation, (req, res) => {
             const errors = validationResult(req);
 
             if (!errors.isEmpty()) {
